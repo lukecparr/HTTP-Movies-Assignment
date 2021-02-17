@@ -33,7 +33,8 @@ const UpdateMovie = (props) => {
 	// Submit changed movie data to API
 	const submitHandler = (e) => {
 		e.preventDefault();
-		axios.put(`http://localhost:5000/api/movies/${id}`, movie)
+		const starsArr = movie.stars.split(',');
+		axios.put(`http://localhost:5000/api/movies/${id}`, {...movie, stars: starsArr})
 			.then((res) => {
 				console.log(res);
 				props.getMovieList();

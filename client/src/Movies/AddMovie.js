@@ -29,12 +29,12 @@ const AddMovie = (props) => {
   // Submit changed movie data to API
   const submitHandler = (e) => {
     e.preventDefault();
-		setMovie({ ...movie, stars: [movie.stars]})
-    axios.post(`http://localhost:5000/api/movies/`, movie)
+		const starsArr = movie.stars.split(',');
+    axios.post(`http://localhost:5000/api/movies/`, {...movie, stars: starsArr})
       .then((res) => {
         console.log(res);
         props.getMovieList();
-        // push(`/`);
+        push(`/`);
       })
       .catch((err) => console.log(err.message));
   };
